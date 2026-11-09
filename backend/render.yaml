@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: qullqi-rimay-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: ALLOW_ADMIN_DEMO_RESET
+        value: "false"
+      - key: USE_EXTERNAL_SUPABASE
+        value: "true"
+      - key: USE_EXTERNAL_GEMINI
+        value: "false"
+      - key: USE_EXTERNAL_TWILIO
+        value: "true"
+      - key: SUPABASE_URL
+        value: https://oqbfuyxoclufkikaddoj.supabase.co
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: CONSENT_SIGNING_SECRET
+        generateValue: true
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_WHATSAPP_NUMBER
+        value: "whatsapp:+14155238886"
+      - key: TWILIO_WEBHOOK_URL
+        sync: false
